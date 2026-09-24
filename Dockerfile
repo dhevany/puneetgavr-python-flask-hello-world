@@ -1,7 +1,9 @@
-FROM python:3.6
-MAINTAINER Dhevan Yogeswaran  "dhevanyogeswaran@gmail.com"
-COPY . /app
-WORKDIR /app
-RUN pip install -r requirements.txt
-ENTRYPOINT ["python"]
-CMD ["index.html"]
+FROM nginx:latest
+
+LABEL maintainer="Dhevan Yogeswaran"
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
